@@ -1,0 +1,6 @@
+[submodule "tmux/tmux-sensible"]
+	path = tmux/tmux-sensible
+	url = git@github.com:tmux-plugins/tmux-sensible.git
+[submodule "nvim/pack/plugins/start/everforest-nvim"]
+	path = nvim/pack/plugins/start/everforest-nvim
+	url = git@github.com:neanias/everforest-nvim.git

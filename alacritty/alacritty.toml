@@ -1,0 +1,41 @@
+[general]
+import = ["~/.config/alacritty/everforest-light.toml"]
+
+[terminal.shell]
+program = "distrobox"
+args = ["enter", "devbox", "--", "bash", "-lc", "fish --login"]
+
+[mouse]
+hide_when_typing = true
+
+[window]
+option_as_alt = "Both"
+# decorations = "none"
+startup_mode = "Maximized"
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[font]
+size = 12
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+
+# make ctrl+enter work
+[[keyboard.bindings]]
+chars = "\u001B[13;5u"
+key = "Return"
+mods = "Control"
+
+# disable close tab
+[[keyboard.bindings]]
+key = "W"
+mods = "Command"
+action = "None"
+
+# disable new tab
+[[keyboard.bindings]]
+key = "T"
+mods = "Command"
+action = "None"
