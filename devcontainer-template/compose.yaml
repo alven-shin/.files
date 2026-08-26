@@ -1,0 +1,41 @@
+services:
+  dev-base:
+    profiles:
+      - docker
+      - podman
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USER_UID: ${USER_UID:?USER_UID is required}
+        USER_GID: ${USER_GID:?USER_GID is required}
+        USERNAME: ${USERNAME:?USERNAME is required}
+    container_name: dev
+    hostname: dev
+
+    # Needed for gdb/strace/ltrace to attach to processes inside the
+    # container. Far narrower than --privileged.
+    cap_add:
+      - SYS_PTRACE
+
+    working_dir: /workspace
+    volumes:
+      - .:/workspace:z
+
+    environment:
+      TERM: xterm-256color
+
+    stdin_open: true   # docker/podman run -i
+    tty: true           # docker/podman run -t
+    command: ["sleep", "infinity"]
+
+  dev-docker:
+    profiles:
+      - docker
+    extends: dev-base
+
+  dev-podman:
+    profiles:
+      - podman
+    extends: dev-base
+    userns_mode: "keep-id"
